@@ -1,0 +1,22 @@
+# API Gateway – NestJS Microservice Architecture
+
+This is the **API Gateway** for a microservices architecture built using **NestJS** and **Redis** for inter-service communication. It acts as the HTTP entry point and forwards requests to microservices like `user-service` via Redis.
+
+## 📦 Technologies Used
+
+- NestJS
+- Redis Transport (via `@nestjs/microservices`)
+- TypeScript
+
+## 🚀 How It Works
+
+- Listens on HTTP (port `3000`)
+- Forwards user-related operations via Redis to `user-service`
+- Uses `ClientProxy` to communicate using message patterns
+
+## 🧠 Core Logic
+
+### Create User
+
+```ts
+this.userClient.send('create_user', createUserDto);
