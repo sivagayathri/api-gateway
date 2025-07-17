@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { UserModule } from './user/user.module';
-import { UserController } from './user/user.controller';
-import { UserService } from './user/user.service';
+import { UserService } from './user.service';
+import { UserController } from './user.controller';
 
 @Module({
   imports: [
@@ -13,12 +12,13 @@ import { UserService } from './user/user.service';
         options: {
           host: 'localhost',
           port: 6379,
+          retryAttempts: 5,
+          retryDelay: 3000,
         },
       },
     ]),
-    UserModule,
   ],
   controllers: [UserController],
   providers: [UserService],
 })
-export class AppModule {}
+export class UserModule {}
