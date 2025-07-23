@@ -3,6 +3,9 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { UserModule } from './user/user.module';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
+import { ProductServiceModule } from './product-service/product-service.module';
+import { QueueModule } from './queue/queue.module';
+
 
 @Module({
   imports: [
@@ -17,6 +20,8 @@ import { UserService } from './user/user.service';
       },
     ]),
     UserModule,
+    ProductServiceModule,
+    QueueModule,
   ],
   controllers: [UserController],
   providers: [UserService],

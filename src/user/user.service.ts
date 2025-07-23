@@ -1,5 +1,5 @@
 import { Inject, Injectable, Post } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, SignInDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ClientProxy } from '@nestjs/microservices';
 
@@ -13,12 +13,12 @@ export class UserService {
     return this.userClient.send('create-user', createUserDto);
   }
 
-  findAll() {
-    return `This action returns all user`;
-  }
-
   findOne(id: number) {
     return this.userClient.send('get-user', id);
+  }
+
+  login(signInDto: SignInDto) {
+    return this.userClient.send('login', signInDto);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
