@@ -13,6 +13,10 @@ export class UserService {
     return this.userClient.send('create-user', createUserDto);
   }
 
+  createAdmin(createUserDto: CreateUserDto) {
+    return this.userClient.send('create-admin', createUserDto);
+  }
+
   findOne(id: number) {
     return this.userClient.send('get-user', id);
   }
