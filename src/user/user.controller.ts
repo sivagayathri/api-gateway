@@ -11,14 +11,25 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto, SignInDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { ApiResponse } from '@nestjs/swagger';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
+  @ApiResponse({
+    status: 201,
+    description: 'User successfully created',
+    type: CreateUserDto,
+  })
   async createUser(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
+  }
+
+  @Post()
+  async registerAdmin(@Body() createUserDto: CreateUserDto) {
+    return this.userService.createAdmin(createUserDto);
   }
 
   @Get(':id')
