@@ -1,5 +1,9 @@
 import { Inject, Injectable, Post } from '@nestjs/common';
-import { CreateUserDto, SignInDto } from './dto/create-user.dto';
+import {
+  CreateAdminDto,
+  CreateUserDto,
+  SignInDto,
+} from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ClientProxy } from '@nestjs/microservices';
 
@@ -13,8 +17,8 @@ export class UserService {
     return this.userClient.send('create-user', createUserDto);
   }
 
-  createAdmin(createUserDto: CreateUserDto) {
-    return this.userClient.send('create-admin', createUserDto);
+  createAdmin(createAdminDto: CreateAdminDto) {
+    return this.userClient.send('create-admin', createAdminDto);
   }
 
   findOne(id: number) {
