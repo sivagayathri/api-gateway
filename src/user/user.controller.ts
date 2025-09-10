@@ -9,7 +9,11 @@ import {
   Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto, SignInDto } from './dto/create-user.dto';
+import {
+  CreateAdminDto,
+  CreateUserDto,
+  SignInDto,
+} from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiResponse } from '@nestjs/swagger';
 
@@ -27,9 +31,14 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Post()
-  async registerAdmin(@Body() createUserDto: CreateUserDto) {
-    return this.userService.createAdmin(createUserDto);
+  @Post('adminAcc')
+  @ApiResponse({
+    status: 201,
+    description: 'admin successfully created',
+    type: CreateAdminDto,
+  })
+  async registerAdmin(@Body() createAdminDto: CreateAdminDto) {
+    return this.userService.createAdmin(createAdminDto);
   }
 
   @Get(':id')
