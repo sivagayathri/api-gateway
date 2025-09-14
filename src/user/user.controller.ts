@@ -31,15 +31,7 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Post('adminAcc')
-  @ApiResponse({
-    status: 201,
-    description: 'admin successfully created',
-    type: CreateAdminDto,
-  })
-  async registerAdmin(@Body() createAdminDto: CreateAdminDto) {
-    return this.userService.createAdmin(createAdminDto);
-  }
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {

@@ -17,10 +17,6 @@ export class UserService {
     return this.userClient.send('create-user', createUserDto);
   }
 
-  createAdmin(createAdminDto: CreateAdminDto) {
-    return this.userClient.send('create-admin', createAdminDto);
-  }
-
   findOne(id: number) {
     return this.userClient.send('get-user', id);
   }
