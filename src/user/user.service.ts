@@ -1,11 +1,8 @@
 import { Inject, Injectable, Post } from '@nestjs/common';
-import {
-  CreateAdminDto,
-  CreateUserDto,
-  SignInDto,
-} from './dto/create-user.dto';
+import { CreateUserDto, SignInDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ClientProxy } from '@nestjs/microservices';
+import { CreateAdminDto } from 'src/admin/dto/create-admin.dto';
 
 @Injectable()
 export class UserService {
