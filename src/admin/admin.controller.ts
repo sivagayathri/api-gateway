@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
 
@@ -17,7 +9,6 @@ export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
   @Post()
-  @Post('adminAcc')
   @ApiResponse({
     status: 201,
     description: 'admin successfully created',
