@@ -44,3 +44,9 @@ export class CreateAdminDto {
   @IsString()
   companyName: string;
 }
+
+
+export class AdminSignIn {
+  email: string;
+  password: string;
+}
