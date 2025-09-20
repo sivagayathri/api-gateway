@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateAdminDto } from './dto/create-admin.dto';
+import { AdminSignIn, CreateAdminDto } from './dto/create-admin.dto';
 import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
@@ -10,5 +10,9 @@ export class AdminService {
 
   createAdmin(createAdminDto: CreateAdminDto) {
     return this.userClient.send('create-admin', createAdminDto);
+  }
+
+  loginAdmin(loginAdminDto: AdminSignIn) {
+    return this.userClient.send('admin-login', loginAdminDto);
   }
 }

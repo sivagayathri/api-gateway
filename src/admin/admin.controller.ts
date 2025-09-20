@@ -1,6 +1,6 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { AdminService } from './admin.service';
-import { CreateAdminDto } from './dto/create-admin.dto';
+import { AdminSignIn, CreateAdminDto } from './dto/create-admin.dto';
 
 import { ApiResponse } from '@nestjs/swagger';
 
@@ -16,5 +16,15 @@ export class AdminController {
   })
   async registerAdmin(@Body() createAdminDto: CreateAdminDto) {
     return this.adminService.createAdmin(createAdminDto);
+  }
+
+  @Post('login')
+  @ApiResponse({
+    status: 201,
+    description: 'admin successfully logged in',
+    type: AdminSignIn,
+  })
+  async loginAdmin(@Body() loginAdminDto: AdminSignIn) {
+    return this.adminService.loginAdmin(loginAdminDto);
   }
 }
