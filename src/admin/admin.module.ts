@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
+import { QueueModule } from 'src/queue/queue.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AdminService } from './admin.service';
         },
       },
     ]),
+    QueueModule,
   ],
   controllers: [AdminController],
   providers: [AdminService],
