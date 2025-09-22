@@ -3,6 +3,7 @@ import { AdminService } from './admin.service';
 import { AdminSignIn, CreateAdminDto } from './dto/create-admin.dto';
 
 import { ApiResponse } from '@nestjs/swagger';
+import { CreateProductDto } from './dto/create-admin-product.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -26,5 +27,15 @@ export class AdminController {
   })
   async loginAdmin(@Body() loginAdminDto: AdminSignIn) {
     return this.adminService.loginAdmin(loginAdminDto);
+  }
+
+  @Post('add-stock')
+  @ApiResponse({
+    status: 201,
+    description: 'admin successfully added products',
+    type: CreateProductDto,
+  })
+  async addStock(@Body() productDetails: CreateProductDto[]) {
+    return this.adminService.productDetails(productDetails);
   }
 }

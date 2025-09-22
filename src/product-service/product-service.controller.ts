@@ -7,7 +7,7 @@ export class ProductServiceController {
 
   @Post()
   async createProduct(@Body() body: any) {
-    await this.queueService.addJob(body);
+    await this.queueService.addStockJob(body);
     return { message: 'Product creation job queued' };
   }
 }

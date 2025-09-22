@@ -1,15 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { InjectQueue } from '@nestjs/bullmq';
 import { Queue } from 'bullmq';
+import IORedis from 'ioredis';
+
+const connection = new IORedis(
+  process.env.REDIS_URL || 'redis://localhost:6379',
+  {
+    maxRetriesPerRequest: null,
+  },
+);
+
+const productQueue = new Queue('product-events', { connection });
 
 @Injectable()
 export class QueueService {
-  constructor(@InjectQueue('example-queue') private readonly queue: Queue) {}
-
-  async addJob(data: any) {
-    await this.queue.add('product-create', data, {
-      attempts: 3,
-      backoff: 5000,
-    });
+  async addStockJob(data: any) {
+    await productQueue.add('add-stock', data, { attempts: 3 });
   }
 }
