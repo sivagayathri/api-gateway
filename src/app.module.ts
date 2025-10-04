@@ -6,6 +6,7 @@ import { UserService } from './user/user.service';
 import { ProductServiceModule } from './product-service/product-service.module';
 import { QueueModule } from './queue/queue.module';
 import { AdminModule } from './admin/admin.module';
+import { OrderModule } from './order/order.module';
 
 
 @Module({
@@ -24,6 +25,7 @@ import { AdminModule } from './admin/admin.module';
     ProductServiceModule,
     QueueModule,
     AdminModule,
+    OrderModule,
   ],
   controllers: [UserController],
   providers: [UserService],

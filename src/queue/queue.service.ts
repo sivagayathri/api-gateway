@@ -16,4 +16,8 @@ export class QueueService {
   async addStockJob(data: any) {
     await productQueue.add('add-stock', data, { attempts: 3 });
   }
+
+  async createOrder(data: any) {
+    await productQueue.add('order-placed', data, { attempts: 3 });
+  }
 }
